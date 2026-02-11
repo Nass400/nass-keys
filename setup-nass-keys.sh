@@ -1,24 +1,29 @@
 #!/bin/bash
+# -------------------------------
+# nass-keys setup script
+# Installs dependencies and sets up nass-keys globally
+# -------------------------------
 
-# Install dependencies
+# Update package lists
 sudo apt update
-sudo apt install -y xbindkeys xdotool xvkbd
 
-# Create default xbindkeys config if missing
-if [ ! -f "$HOME/.xbindkeysrc" ]; then
-    xbindkeys --defaults > "$HOME/.xbindkeysrc"
-fi
+# Install required system packages
+sudo apt install -y python3 python3-pip xbindkeys xdotool xvkbd
 
-# Make nass-keys system-wide
+# Install required Python packages
+pip3 install --user keyboard PyInquirer
+
+# Create a bin folder in home if it doesn't exist
 mkdir -p ~/bin
-cp nass-keys.sh ~/bin/nass-keys
+
+# Copy nass_keys.py to ~/bin as 'nass-keys'
+cp nass_keys.py ~/bin/nass-keys
 chmod +x ~/bin/nass-keys
 
-# Ensure ~/bin is in PATH
-if ! echo "$PATH" | grep -q "$HOME/bin"; then
+# Add ~/bin to PATH if not already
+if ! echo $PATH | grep -q "$HOME/bin"; then
     echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
-    export PATH="$HOME/bin:$PATH"
+    source ~/.bashrc
 fi
 
-echo "✅ Setup complete! You can now use the 'nass-keys' command."
-echo "Try 'nass-keys --help' to see available commands."
+echo "Setup complete! You can now run 'nass-keys' from anywhere."

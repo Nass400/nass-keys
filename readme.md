@@ -18,7 +18,7 @@ Nass-Keys is a lightweight Linux hotkey manager that allows you to map key combi
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/USERNAME/nass-keys.git](https://github.com/USERNAME/nass-keys.git)
+    git clone https://github.com/Nass400/nass-keys.git
     cd nass-keys
     ```
 
